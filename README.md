@@ -14,6 +14,6 @@ This project introduces a prototype framework for evaluating long-context reason
 \- `datasets/` → evaluation tasks
 \- `docs/` → repo sources
 
-\## Vision
+\## Vision-
 This serves as a foundation for building a scalable evaluation framework for AI coding agents interacting with large repositories like Kubeflow.
 

@@ -1,20 +1,36 @@
-\# Gemini CLI: Long-Context \& Complex Reasoning Evaluation Dataset
+\# Gemini CLI Evaluation PoC
 
 
 
-This repository contains the Proof-of-Concept (PoC) for a high-complexity evaluation benchmark.
+This project introduces a prototype framework for evaluating long-context reasoning capabilities in LLM-based developer tools like Gemini CLI.
 
 
 
-\## Strategic Focus
+\## Features
 
-Targeting \*\*multi-hop architectural reasoning\*\* within 1M+ token context windows.
+\- Structured task schema for real-world GitHub issues
+
+\- Repository-based evaluation tasks
+
+\- Long-context reasoning benchmarks (50K+ tokens)
+
+\- Designed for cross-model consistency testing
 
 
 
-\## Key Metrics
+\## Structure
 
-\- \*\*Reasoning-Force Score (RFS):\*\* Cross-component dependency hops.
+\- `schema.json` → task format definition
 
-\- \*\*Path Efficiency:\*\* Navigation accuracy in massive codebases.
+\- `scripts/` → dataset generation tools
+
+\- `datasets/` → evaluation tasks
+
+\- `docs/` → repo sources
+
+
+
+\## Vision
+
+This serves as a foundation for building a scalable evaluation framework for AI coding agents interacting with large repositories like Kubeflow.
 

@@ -8,33 +8,57 @@
       "type": "object",
       "required": ["task_id", "difficulty_tier", "reasoning_forcing_score"],
       "properties": {
-        "task_id": { "type": "string" },
-        "difficulty_tier": { "type": "string", "enum": ["Beginner", "Intermediate", "Advanced", "Expert"] },
-        "reasoning_forcing_score": { "type": "number", "minimum": 0, "maximum": 10 },
-        "min_context_tokens": { "type": "integer" },
-        "contamination_score": { "type": "number", "minimum": 0, "maximum": 1 },
-        "ast_dependency_hops": { "type": "integer" },
-        "temporal_risk": { "type": "string", "enum": ["low", "medium", "high"] }
+        "task_id": { "type": "string", "example": "task_001" },
+        "difficulty_tier": { "type": "string", "enum": ["Beginner", "Intermediate", "Advanced", "Expert"], "example": "Advanced" },
+        "reasoning_forcing_score": { "type": "number", "minimum": 0, "maximum": 10, "example": 4.5 },
+        "min_context_tokens": { "type": "integer", "example": 1200 },
+        "contamination_score": { "type": "number", "minimum": 0, "maximum": 1, "example": 0.1 },
+        "ast_dependency_hops": { "type": "integer", "example": 3 },
+        "temporal_risk": { "type": "string", "enum": ["low", "medium", "high"], "example": "low" }
       }
     },
     "environment": {
       "type": "object",
       "required": ["repo_url", "base_commit"],
       "properties": {
-        "repo_url": { "type": "string", "format": "uri" },
-        "base_commit": { "type": "string" },
-        "dependencies": { "type": "array", "items": { "type": "string" } }
+        "repo_url": { "type": "string", "format": "uri", "example": "https://github.com/vetapalem-pravallika/sample-repo" },
+        "base_commit": { "type": "string", "example": "a1b2c3d4" },
+        "dependencies": { "type": "array", "items": { "type": "string" }, "example": ["numpy", "pandas", "tensorflow"] }
       }
     },
     "task_definition": {
       "type": "object",
       "required": ["problem_statement", "relevant_files"],
       "properties": {
-        "problem_statement": { "type": "string" },
-        "relevant_files": { "type": "array", "items": { "type": "string" } },
-        "test_command": { "type": "string" },
-        "gold_patch_sha": { "type": "string" }
+        "problem_statement": { "type": "string", "example": "Refactor multi-file ML pipeline to add AST-based validation and reasoning-force scoring." },
+        "relevant_files": { "type": "array", "items": { "type": "string" }, "example": ["pipeline/main.py", "pipeline/utils.py", "pipeline/ast_analyzer.py"] },
+        "test_command": { "type": "string", "example": "pytest -v tests/test_pipeline.py" },
+        "gold_patch_sha": { "type": "string", "example": "f5e3c2b1" }
       }
-    }
+    },
+    "sample_tasks": [
+      {
+        "task_metadata": {
+          "task_id": "task_001",
+          "difficulty_tier": "Advanced",
+          "reasoning_forcing_score": 4.5,
+          "min_context_tokens": 1200,
+          "contamination_score": 0.1,
+          "ast_dependency_hops": 3,
+          "temporal_risk": "low"
+        },
+        "environment": {
+          "repo_url": "https://github.com/vetapalem-pravallika/sample-repo",
+          "base_commit": "a1b2c3d4",
+          "dependencies": ["numpy", "pandas", "tensorflow"]
+        },
+        "task_definition": {
+          "problem_statement": "Refactor multi-file ML pipeline to add AST-based validation and reasoning-force scoring.",
+          "relevant_files": ["pipeline/main.py", "pipeline/utils.py", "pipeline/ast_analyzer.py"],
+          "test_command": "pytest -v tests/test_pipeline.py",
+          "gold_patch_sha": "f5e3c2b1"
+        }
+      }
+    ]
   }
 }

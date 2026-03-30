@@ -1,0 +1,22 @@
+{
+  "task_metadata": {
+    "task_id": "GH-KUBEFLOW-101",
+    "difficulty_tier": "Expert",
+    "reasoning_forcing_score": 8.5,
+    "min_context_tokens": 55000,
+    "contamination_score": 0.05,
+    "ast_dependency_hops": 4,
+    "temporal_risk": "low"
+  },
+  "environment": {
+    "repo_url": "https://github.com/kubeflow/pipelines",
+    "base_commit": "latest",
+    "dependencies": ["python", "kfp", "docker", "kubernetes"]
+  },
+  "task_definition": {
+    "problem_statement": "Implement a dynamic backend discovery pattern to decouple TrainerClient from specific cloud provider logic.",
+    "relevant_files": ["sdk/python/kfp/client.py", "sdk/python/kfp/backend/api_server.py"],
+    "test_command": "pytest tests/test_architectural_invariants.py",
+    "gold_patch_sha": "a1b2c3d4e5f6"
+  }
+}

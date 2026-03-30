@@ -1,18 +1,40 @@
 {
-  "task_metadata": {
-    "task_id": "GH-KUBEFLOW-101",
-    "difficulty_tier": "Expert",
-    "reasoning_forcing_score": 8,
-    "min_context_tokens": 50000
-  },
-  "environment": {
-    "repo_url": "https://github.com/kubeflow/pipelines",
-    "base_commit": "latest",
-    "dependencies": ["python", "kfp", "docker"]
-  },
-  "task_definition": {
-    "problem_statement": "Implement a dynamic backend discovery pattern that decouples the TrainerClient from specific cloud provider implementations.",
-    "relevant_files": ["sdk/python/kfp/client.py", "sdk/python/kfp/backend/"],
-    "test_command": "pytest tests/test_client.py"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Long-Context & Complex Reasoning Task Schema",
+  "type": "object",
+  "required": ["task_metadata", "environment", "task_definition"],
+  "properties": {
+    "task_metadata": {
+      "type": "object",
+      "required": ["task_id", "difficulty_tier", "reasoning_forcing_score"],
+      "properties": {
+        "task_id": { "type": "string" },
+        "difficulty_tier": { "type": "string", "enum": ["Beginner", "Intermediate", "Advanced", "Expert"] },
+        "reasoning_forcing_score": { "type": "number", "minimum": 0, "maximum": 10 },
+        "min_context_tokens": { "type": "integer" },
+        "contamination_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "ast_dependency_hops": { "type": "integer" },
+        "temporal_risk": { "type": "string", "enum": ["low", "medium", "high"] }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "required": ["repo_url", "base_commit"],
+      "properties": {
+        "repo_url": { "type": "string", "format": "uri" },
+        "base_commit": { "type": "string" },
+        "dependencies": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "task_definition": {
+      "type": "object",
+      "required": ["problem_statement", "relevant_files"],
+      "properties": {
+        "problem_statement": { "type": "string" },
+        "relevant_files": { "type": "array", "items": { "type": "string" } },
+        "test_command": { "type": "string" },
+        "gold_patch_sha": { "type": "string" }
+      }
+    }
   }
 }
